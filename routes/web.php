@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\ProviderController;
+use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +28,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+/**
+ * socialite auth
+ */
+// Route::get('/auth/{provider}', [SocialiteController::class, 'redirectToProvider']);
+// Route::get('/auth/{provider}/callback', [SocialiteController::class, 'handleProvideCallback']);
+
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
